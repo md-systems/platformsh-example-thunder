@@ -1,0 +1,95 @@
+# This file describes an application. You can have multiple applications
+# in the same project.
+
+# The name of this app. Must be unique within a project.
+name: php
+
+# The runtime the application uses.
+type: "php:7.0"
+
+runtime:
+  extensions:
+    - redis
+    - apcu
+    - apcu_bc
+
+# Configuration of the build of this application.
+build:
+    flavor: composer
+
+# The build-time dependencies of the app.
+dependencies:
+    php:
+        "drush/drush": "^8.0"
+        "drupal/console": "@stable"
+    nodejs:
+        bower: "^1.7.9"
+
+# The relationships of the application with services or other applications.
+# The left-hand side is the name of the relationship as it will be exposed
+# to the application in the PLATFORM_RELATIONSHIPS variable. The right-hand
+# side is in the form `<service name>:<endpoint name>`.
+relationships:
+    database: "mysql:mysql"
+    migrate: "migrate:mysql"
+    redis: "redis:redis"
+
+# The configuration of app when it is exposed to the web.
+web:
+    # Specific parameters for different URL prefixes.
+    locations:
+        "/":
+            # The folder to serve static assets for this location from.
+            # (Relative to the application root.)
+            root: "web"
+
+            # How long to allow static assets from this location to be cached.
+            # (Can be a time or -1 for no caching. Times can be suffixed with
+            # "ms" (milliseconds), "s" (seconds), "m" (minutes), "h" (hours),
+            # "d" (days), "w" (weeks), "M" (months, 30d) or "y" (years, 365d).)
+            expires: 300
+
+            # Whether to forward disallowed and missing resources from this
+            # location to the application.
+            # (Can be true, false or a URI path string.)
+            passthru: "/index.php"
+
+            # Expiration rules
+            rules:
+              \.css:
+                allow: true
+                expires: 1w
+              \.js:
+                allow: true
+                expires: 1w
+              \.*$:
+                allow: true
+                expires: 4h
+
+
+# The size of the persistent disk of the application (in MB).
+disk: 2048
+
+# The mounts that will be performed when the package is deployed.
+mounts:
+    "/web/sites/default/files": "shared:files/files"
+    "/tmp": "shared:files/tmp"
+    "/config": "shared:files/config"
+    "/private": "shared:files/private"
+
+# The hooks executed at various points in the lifecycle of the application.
+hooks:
+    # We run deploy hook after your application has been deployed and started.
+    deploy: |
+      mkdir -p /tmp/$PLATFORM_PROJECT/phpstorage/twig
+      rm -rf /tmp/$PLATFORM_PROJECT/phpstorage/twig/*
+      rm -r config/*
+      cp -rp config_sync/* config/
+      cd web
+      drush -y updatedb
+
+# The configuration of scheduled execution.
+crons:
+    drupal:
+        spec: "12 */3 * * *"
+        cmd: "cd web ; drush core-cron"

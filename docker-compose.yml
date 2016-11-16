@@ -1,0 +1,37 @@
+maria:
+  image: drupaldocker/mariadb:10
+  environment:
+    MYSQL_ALLOW_EMPTY_PASSWORD: 'True'
+    MYSQL_DATABASE: drupal
+  ports:
+    - 3306
+
+web:
+  image: drupaldocker/nginx:mainline-alpine
+  environment:
+    VIRTUAL_HOST: thunder.loc
+    DOCROOT: "/var/www/html/web"
+  volumes_from:
+    - php
+  links:
+    - php
+
+php:
+  image: drupaldocker/php-dev:7.0-alpine-fpm
+  links:
+    - maria
+    - redis
+  volumes:
+    - ./:/var/www/html
+
+drush:
+  image: drupaldocker/drush:8-alpine
+  links:
+    - maria
+    - web
+    - redis
+  volumes_from:
+    - php
+
+redis:
+  image: redis:3-alpine
