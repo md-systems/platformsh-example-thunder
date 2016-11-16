@@ -285,7 +285,7 @@ $config_directories = array();
  *   $settings['hash_salt'] = file_get_contents('/home/example/salt.txt');
  * @endcode
  */
-$settings['hash_salt'] = '';
+$settings['hash_salt'] = 'YbbphNf_6QiVMH_tX0yseEY_GirdkhtKyTLXnjm0jvzUS2O1YDremmjRmha1pQL1JY_3ajPuSQ';
 
 /**
  * Deployment identifier.
@@ -739,6 +739,9 @@ $settings['file_scan_ignore_directories'] = [
   'bower_components',
 ];
 
+$settings['install_profile'] = 'thunder';
+$config_directories['sync'] = 'sites/default/files/config_JOz2yx5TddJIHmYHoi5KWhxVyjjPztFdCS1CpzpuwIaxud2wtT7XmuSiWtVrpMqwyEBO2nBCBQ/sync';
+
 /**
  * Load local development override configuration, if available.
  *
@@ -749,6 +752,6 @@ $settings['file_scan_ignore_directories'] = [
  *
  * Keep this code block at the end of this file to take full effect.
  */
-# if (file_exists(__DIR__ . '/settings.local.php')) {
-#   include __DIR__ . '/settings.local.php';
-# }
+if (file_exists(__DIR__ . '/settings.local.php')) {
+  include __DIR__ . '/settings.local.php';
+}
