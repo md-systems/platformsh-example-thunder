@@ -31,7 +31,6 @@ dependencies:
 # side is in the form `<service name>:<endpoint name>`.
 relationships:
     database: "mysql:mysql"
-    redis: "redis:redis"
 
 # The configuration of app when it is exposed to the web.
 web:
