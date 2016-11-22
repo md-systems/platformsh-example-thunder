@@ -28,13 +28,14 @@
         }
     ],
     "require": {
-        "composer/installers": "^1.2",
+        "composer/installers": "v1.0.21",
         "drupal-composer/drupal-scaffold": "^2.2",
         "cweagans/composer-patches": "~1.0",
-        "drupal/core": "~8.0",
-        "drush/drush": "~8.0",
+        "drupal/core": "~8.2",
+        "drush/drush": "~8.1",
         "drupal/console": "~1.0",
-        "burdamagazinorg/thunder": "~8.0"
+        "burdamagazinorg/thunder": "~8.0",
+        "webflo/drupal-core-strict": "8.2.3"
     },
     "require-dev": {
         "behat/mink": "~1.7",
