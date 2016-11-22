@@ -2,19 +2,26 @@
 
 /**
  * @file
- * Contains \DrupalProject\composer\ScriptHandler.
+ * Contains \Thunder\composer\ScriptHandler.
  */
 
-namespace DrupalProject\composer;
+namespace Thunder\composer;
 
 use Composer\Script\Event;
-use Composer\Semver\Comparator;
 use Symfony\Component\Filesystem\Filesystem;
+use Composer\Util\ProcessExecutor;
 
 class ScriptHandler {
 
   protected static function getDrupalRoot($project_root) {
     return $project_root . '/web';
+  }
+
+  public static function buildScaffold(Event $event) {
+    $fs = new Filesystem();
+    if (!$fs->exists(static::getDrupalRoot(getcwd()) . '/autoload.php')) {
+      \DrupalComposer\DrupalScaffold\Plugin::scaffold($event);
+    }
   }
 
   public static function createRequiredFiles(Event $event) {
@@ -35,15 +42,18 @@ class ScriptHandler {
       }
     }
 
+
     // Prepare the settings file for installation
-    if (!$fs->exists($root . '/sites/default/settings.php') and $fs->exists($root . '/sites/default/default.settings.php')) {
+    if (!$fs->exists($root . '/sites/default/settings.php')) {
+      $fs->chmod($root . '/sites/default/', 0755);
       $fs->copy($root . '/sites/default/default.settings.php', $root . '/sites/default/settings.php');
       $fs->chmod($root . '/sites/default/settings.php', 0666);
       $event->getIO()->write("Create a sites/default/settings.php file with chmod 0666");
     }
 
     // Prepare the services file for installation
-    if (!$fs->exists($root . '/sites/default/services.yml') and $fs->exists($root . '/sites/default/default.services.yml')) {
+    if (!$fs->exists($root . '/sites/default/services.yml')) {
+      $fs->chmod($root . '/sites/default/', 0755);
       $fs->copy($root . '/sites/default/default.services.yml', $root . '/sites/default/services.yml');
       $fs->chmod($root . '/sites/default/services.yml', 0666);
       $event->getIO()->write("Create a sites/default/services.yml file with chmod 0666");
@@ -58,41 +68,51 @@ class ScriptHandler {
     }
   }
 
-  /**
-   * Checks if the installed version of Composer is compatible.
-   *
-   * Composer 1.0.0 and higher consider a `composer install` without having a
-   * lock file present as equal to `composer update`. We do not ship with a lock
-   * file to avoid merge conflicts downstream, meaning that if a project is
-   * installed with an older version of Composer the scaffolding of Drupal will
-   * not be triggered. We check this here instead of in drupal-scaffold to be
-   * able to give immediate feedback to the end user, rather than failing the
-   * installation after going through the lengthy process of compiling and
-   * downloading the Composer dependencies.
-   *
-   * @see https://github.com/composer/composer/pull/5035
-   */
-  public static function checkComposerVersion(Event $event) {
-    $composer = $event->getComposer();
-    $io = $event->getIO();
+  public static function dependencyCleanup() {
+    $fs = new Filesystem();
+    $root = getcwd();
 
-    $version = $composer::VERSION;
+    $directories = array(
+      "bin",
+      "docroot/core",
+      "docroot/libraries",
+      "docroot/modules/contrib",
+      "docroot/profiles/contrib",
+      "docroot/themes/contrib",
+      "drush/contrib",
+      "vendor",
+    );
 
-    // The dev-channel of composer uses the git revision as version number,
-    // try to the branch alias instead.
-    if (preg_match('/^[0-9a-f]{40}$/i', $version)) {
-      $version = $composer::BRANCH_ALIAS_VERSION;
-    }
+    $directories = array_map(function ($directory) use ($root) {
+      return $root.'/'.$directory;
+    }, $directories);
 
-    // If Composer is installed through git we have no easy way to determine if
-    // it is new enough, just display a warning.
-    if ($version === '@package_version@' || $version === '@package_branch_alias_version@') {
-      $io->writeError('<warning>You are running a development version of Composer. If you experience problems, please update Composer to the latest stable version.</warning>');
-    }
-    elseif (Comparator::lessThan($version, '1.0.0')) {
-      $io->writeError('<error>Drupal-project requires Composer version 1.0.0 or higher. Please update your Composer before continuing</error>.');
-      exit(1);
-    }
+    $fs->remove($directories);
+
+    echo "(!) Now you can run 'composer install' to get the latest dependencies.";
+
   }
 
+  /**
+   * Moves front-end libraries to Thunder's installed directory.
+   *
+   * @param \Composer\Script\Event $event
+   *   The script event.
+   */
+  public static function deployLibraries(Event $event) {
+    $extra = $event->getComposer()->getPackage()->getExtra();
+    if (isset($extra['installer-paths'])) {
+      foreach ($extra['installer-paths'] as $path => $criteria) {
+        if (array_intersect(['drupal/thunder', 'type:drupal-profile'], $criteria)) {
+          $thunder = $path;
+        }
+      }
+      if (isset($thunder)) {
+        $thunder = str_replace('{$name}', 'thunder', $thunder);
+        $executor = new ProcessExecutor($event->getIO());
+        $output = NULL;
+        $executor->execute('npm install', $output, $thunder);
+      }
+    }
+  }
 }
