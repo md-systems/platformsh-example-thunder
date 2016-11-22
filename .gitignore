@@ -12,6 +12,7 @@ web/sites/*/files
 # Ignore SimpleTest multi-site environment.
 web/sites/simpletest
 
+
 bin
 docroot/core
 docroot/modules/contrib
@@ -30,9 +31,9 @@ tmp/*
 .DS_Store
 
 # Ignore configuration files that may contain sensitive information.
-docroot/sites/*/settings.local.php
-docroot/sites/*/settings.devdesktop.php
-docroot/sites/*/services*.yml
+web/sites/*/settings.local.php
+web/sites/*/settings.devdesktop.php
+web/sites/*/services*.yml
 
 # Ignore paths that contain user-generated content.
 docroot/sites/*/files
