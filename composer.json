@@ -59,6 +59,11 @@
         ]
     },
     "extra": {
+        "patches": {
+            "drupal/metatag": {
+                "Disable console": "https://www.drupal.org/files/issues/2810835-11.patch"
+            }
+        },
         "installer-paths": {
             "web/core": ["type:drupal-core"],
             "web/libraries/{$name}": ["type:drupal-library"],
