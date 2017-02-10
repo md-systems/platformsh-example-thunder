@@ -9,7 +9,6 @@
     cache:
       enabled: true
       headers: []
-      cookies: ["SESS095133f3d3446003fcd7b5d4afb49385"]
       default_ttl: 60
 
 "http://{default}/":
