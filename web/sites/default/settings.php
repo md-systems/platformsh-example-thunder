@@ -19,6 +19,10 @@ $databases = array();
 $config_directories = array();
 $settings['update_free_access'] = FALSE;
 $settings['container_yamls'][] = __DIR__ . '/services.yml';
+$settings['file_scan_ignore_directories'] = [
+  'node_modules',
+  'bower_components',
+];
 
 // This is defined inside the read-only "config" directory, deployed via Git.
 $config_directories[CONFIG_SYNC_DIRECTORY] = '../config/sync';
