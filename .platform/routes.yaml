@@ -5,7 +5,7 @@
 
 "http://www.{default}/":
     type: upstream
-    upstream: "php:http"
+    upstream: "app:http"
     cache:
       enabled: true
       headers: []
