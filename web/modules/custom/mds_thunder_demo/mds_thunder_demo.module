@@ -1,0 +1,99 @@
+<?php
+
+use Drupal\Core\Form\FormStateInterface;
+
+/**
+ * Implements hook_user_presave().
+ */
+function mds_thunder_demo_user_presave(\Drupal\user\UserInterface $user) {
+  if ($user->isNew() && _mds_thunder_demo_is_new_site()) {
+    // This is the main demo user so we assign it the "editor" role.
+    /** @var \Drupal\user\RoleInterface $role */
+    if ($role = \Drupal\user\Entity\Role::load('editor')) {
+      $user->addRole($role->id());
+    }
+
+    // Use the same password for the admin user.
+    /** @var \Drupal\user\UserInterface $admin */
+    if ($admin = \Drupal\user\Entity\User::load(1)) {
+      $admin->setPassword($user->getPassword());
+      $admin->pass->pre_hashed = TRUE;
+      $admin->save();
+    }
+
+    // Revert custom configuration tweak that we needed for the initial user
+    // registration step.
+    /** @var \Drupal\user\RoleInterface $anonymous */
+    if ($anonymous = \Drupal\user\Entity\Role::load('anonymous')) {
+      $anonymous->revokePermission('access tour');
+      $anonymous->save();
+    }
+
+    \Drupal::configFactory()
+      ->getEditable('system.site')
+      ->set('page.front', '/node')
+      ->save(TRUE);
+
+    \Drupal::configFactory()
+      ->getEditable('user.settings')
+      ->set('register', 'visitors_admin_approval')
+      ->save(TRUE);
+
+    // This is too soon to change this configuration variable as we won't login
+    // if we do it now. Postpone for later.
+    register_shutdown_function(function () {
+      \Drupal::configFactory()
+        ->getEditable('user.settings')
+        ->set('verify_mail', TRUE)
+        ->save(TRUE);
+    });
+
+    // Create a flag so we won't create the editor user again.
+    \Drupal::state()->set('mds_thunder_demo_editor_created', TRUE);
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function mds_thunder_demo_form_user_register_form_alter(array &$form, FormStateInterface $form_state, $form_id) {
+  if (_mds_thunder_demo_is_new_site()) {
+    $form['actions']['submit']['#submit'][] = 'mds_thunder_demo_registration_submit';
+  }
+}
+
+/**
+ * Submit callback that redirects to front after user registration.
+ */
+function mds_thunder_demo_registration_submit(array $form, FormStateInterface $form_state) {
+  $form_state->setRedirectUrl(\Drupal\Core\Url::fromUri('internal:/', ['query' => ['tour' => 'tour']]));
+}
+
+/**
+ * Gets if the site instance is new.
+ *
+ * We consider it new until the initial editorial editor was created. Before
+ * that is done we need to do some additional steps in order to provide the best
+ * demo experience:
+ * - we redirect to user registration form with tour enabled,
+ * - we automatically assign "Editor" role to the newly created user and re-use
+ *   its password for the admin,
+ * - we redirect to the front with tour enabled after registration.
+ *
+ * @return bool
+ *   TRUE if we're dealing with a new site instance and FALSE if not.
+ */
+function _mds_thunder_demo_is_new_site() {
+  if (\Drupal::state()->get('mds_thunder_demo_editor_created', FALSE)) {
+    return FALSE;
+  }
+
+  $users_count = \Drupal::entityQuery('user')
+    ->count()
+    ->execute();
+
+  // If we only have admin and anonymous user we neeed to creating the first
+  // (editor) user. That indicates that we're running new site instance of the
+  // demo.
+  return $users_count == 2;
+}

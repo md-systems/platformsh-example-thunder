@@ -1,0 +1,63 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - thunder_demo
+id: registration
+label: User registration
+module: thunder_demo
+routes:
+  -
+    route_name: user.register
+tips:
+  first:
+    id: first
+    plugin: text
+    label: 'Welcome!'
+    body: '<p>Welcome to your Thunder demo site. We''ve pre-configured most things for you and will lead you through the first steps.</p><p>But first you need to create a user account. Ready?</p>'
+    weight: 1
+  email:
+    id: email
+    plugin: text
+    label: 'E-mail address'
+    body: 'Enter your e-mail address.'
+    weight: 2
+    attributes:
+      data-id: edit-mail
+      data-options: tipLocation: left
+  username:
+    id: username
+    plugin: text
+    label: 'Username'
+    body: 'Pick a username. We are pretty open when it comes to the characters you can use. Check the tip below the text field for more info.'
+    weight: 3
+    attributes:
+      data-id: edit-name
+      data-options: tipLocation: left
+  password:
+    id: password
+    plugin: text
+    label: 'Password'
+    body: 'Enter your password. To make it secure ensure that it is <a target="_blank" href="https://www.xkcd.com/936/">long enough</a>.'
+    weight: 4
+    attributes:
+      data-id: edit-pass-pass1
+      data-options: tipLocation: left
+  password_again:
+    id: password_again
+    plugin: text
+    label: 'Repeat password'
+    body: 'Type your password again. We want to make sure you didn''t do any typos.'
+    weight: 5
+    attributes:
+      data-id: edit-pass-pass2
+      data-options: tipLocation: left
+  save:
+    id: save
+    plugin: text
+    label: 'Save'
+    body: '<p>Hit "Create new account" and you''re done. That''s it! Easy, ha?</p><p>You will be automatically logged in. We will grant you the "Editor" role, which will allow you to explore the content creation flow.</p><p>When you''ll be ready to dig deeper login in as <strong>"admin"</strong> using the same password as you''ve just chosen.</p>'
+    weight: 5
+    attributes:
+      data-id: edit-pass-pass2
+      data-options: tipLocation: top
