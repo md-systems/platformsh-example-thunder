@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "9d35aae2c5852a1d0231cfac265203a4",
-    "content-hash": "3fc952384ffd1847a8fa835146de88d5",
+    "hash": "ef75472def7406c32d43fc32e147c0c9",
+    "content-hash": "75dfd3bb29f045adcf85317d9111002e",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -290,6 +290,9 @@
                     "drupal/media_entity_instagram": {
                         "Make posts responsive": "https://www.drupal.org/files/issues/make_posts_responsive-2807735-13.patch"
                     }
+                },
+                "patches_applied": {
+                    "Tour improvements.": "https://www.drupal.org/files/issues/2851239_2.patch"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -1994,6 +1997,11 @@
                 "symfony/css-selector": "~2.8"
             },
             "type": "drupal-core",
+            "extra": {
+                "patches_applied": {
+                    "Make it possible to specify a destination after the installation for distributions": "https://www.drupal.org/files/issues/make_it_possible_to-2776605-2.patch"
+                }
+            },
             "autoload": {
                 "psr-4": {
                     "Drupal\\Core\\": "lib/Drupal/Core",
@@ -2253,6 +2261,10 @@
                 "drupal": {
                     "version": "8.x-1.0-alpha3",
                     "datestamp": "1478516039"
+                },
+                "patches_applied": {
+                    "DropzneJS is cleared on every Ajax response": "https://www.drupal.org/files/issues/dropznejs_is_cleared_on-2827120-11_0.patch",
+                    "Improved MultiStep selection display (DropZone Widget)": "https://www.drupal.org/files/issues/2823670_17.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -2944,6 +2956,9 @@
                 "drupal": {
                     "version": "8.x-1.6",
                     "datestamp": "1480363983"
+                },
+                "patches_applied": {
+                    "Make the label form element non-required in the entity form": "https://www.drupal.org/files/issues/2813685-21.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -3094,6 +3109,9 @@
                 "drupal": {
                     "version": "8.x-1.2",
                     "datestamp": "1470169139"
+                },
+                "patches_applied": {
+                    "Make posts responsive": "https://www.drupal.org/files/issues/make_posts_responsive-2807735-13.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -3345,12 +3363,11 @@
                 "drupal/core": "~8.0",
                 "drupal/entity_reference_revisions": "*"
             },
-            "suggest": {
-                "drupal/core": "Required by drupal/paragraphs_demo",
-                "drupal/diff": "Required by drupal/paragraphs",
-                "drupal/replicate": "Required by drupal/paragraphs",
-                "drupal/search_api": "Required by drupal/paragraphs_demo",
-                "drupal/search_api_db": "Required by drupal/paragraphs_demo"
+            "require-dev": {
+                "drupal/diff": "*",
+                "drupal/replicate": "*",
+                "drupal/search_api": "*",
+                "drupal/search_api_db": "*"
             },
             "type": "drupal-module",
             "extra": {
@@ -3360,6 +3377,10 @@
                 "drupal": {
                     "version": "8.x-1.0",
                     "datestamp": "1469726249"
+                },
+                "patches_applied": {
+                    "IEF Simple Widget not working in paragraphs with preview mode": "https://www.drupal.org/files/issues/ief_simple_widget_not-2722097-36.patch",
+                    "Saving problem in preview mode with IEF items": "https://www.drupal.org/files/issues/saving_problem_in-2804377-2.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -3367,6 +3388,10 @@
                 "GPL-2.0+"
             ],
             "authors": [
+                {
+                    "name": "Berdir",
+                    "homepage": "https://www.drupal.org/user/214652"
+                },
                 {
                     "name": "Frans",
                     "homepage": "https://www.drupal.org/user/514222"

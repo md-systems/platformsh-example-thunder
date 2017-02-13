@@ -69,6 +69,13 @@
     },
     "extra": {
         "patches": {
+            "drupal/drupal" : {
+                "Make links in tour tips blue in Seven." : "https://www.drupal.org/files/issues/2851270_2.patch",
+                "Make sure tour tips are displayed above admin toolbar." : "https://www.drupal.org/files/issues/tour_tip_display_under-2851086-2.patch"
+            },
+            "burdamagazinorg/thunder" : {
+                "Tour improvements." : "https://www.drupal.org/files/issues/2851239_2.patch"
+            }
         },
         "installer-paths": {
             "web/core": ["type:drupal-core"],
