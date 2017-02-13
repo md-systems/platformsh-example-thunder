@@ -1,0 +1,5 @@
+services:
+  initial_tour_subscriber:
+    class: Drupal\mds_thunder_demo\EventSubscriber\InitialTourSubscriber
+    tags:
+      - { name: event_subscriber }
