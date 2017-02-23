@@ -1,0 +1,25 @@
+video {
+  margin: 0 auto 1.2em;
+  display: block;
+  max-width: 100%;
+}
+
+.socialshareprivacy ul.social_share_privacy_area {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.socialshareprivacy ul.social_share_privacy_area li {
+  align-self: center;
+  max-width: 65px;
+}
+
+.socialshareprivacy ul.social_share_privacy_area li a {
+  border: 0;
+}
+
+.socialshareprivacy ul.social_share_privacy_area li.settings_info {
+  max-width: 25px;
+}

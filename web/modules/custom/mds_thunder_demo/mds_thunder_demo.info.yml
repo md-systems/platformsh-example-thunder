@@ -5,3 +5,4 @@ package: Thunder
 core: 8.x
 dependencies:
   - thunder_demo
+  - sharemessage

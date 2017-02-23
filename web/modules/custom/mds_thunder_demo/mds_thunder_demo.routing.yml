@@ -1,0 +1,7 @@
+mds_thunder_demo.welcome:
+  path: '/welcome'
+  defaults:
+    _controller: '\Drupal\mds_thunder_demo\Controller\DemoWelcomeController::welcomePage'
+    _title: 'Welcome to Thunder!'
+  requirements:
+    _permission: 'access content'

@@ -1,0 +1,4 @@
+welcome:
+  css:
+    component:
+      css/welcome.css: {}
