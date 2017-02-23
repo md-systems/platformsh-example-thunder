@@ -79,10 +79,17 @@ hooks:
     deploy: |
       mkdir -p /tmp/$PLATFORM_PROJECT/phpstorage/twig
       rm -rf /tmp/$PLATFORM_PROJECT/phpstorage/twig/*
-      rm -r config/*
-      cp -rp config_sync/* config/
       cd web
-      drush -y updatedb
+      if [ ! -f /app/private/.platform.installed ]; then
+        # Install Thunder and enable demo module on first deploy.
+        /app/bin/drush site-install thunder --site-name="Thunder demo" -y
+        /app/bin/drush pm-enable mds_thunder_demo -y
+        touch /app/private/.platform.installed
+      else
+        rm -r config/*
+        cp -rp config_sync/* config/
+        /app/bin/drush -y updatedb
+      fi
 
 # The configuration of scheduled execution.
 crons:
