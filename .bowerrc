@@ -1,0 +1,6 @@
+{
+  "directory": "web/libraries",
+  "ignoredDependencies": [
+    "jquery"
+  ]
+}
