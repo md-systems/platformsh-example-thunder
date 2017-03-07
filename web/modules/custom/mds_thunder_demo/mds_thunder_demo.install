@@ -20,6 +20,14 @@ function mds_thunder_demo_install() {
     ->set('page.front', '/user/register')
     ->save(TRUE);
 
+  // Enable homepage route on our custom landing page.
+  $routes = \Drupal::config('tour.tour.homepage')->get('routes');
+  $routes[] = ['route_name' => 'mds_thunder_demo.welcome'];
+  \Drupal::configFactory()
+    ->getEditable('tour.tour.homepage')
+    ->set('routes', $routes)
+    ->save(TRUE);
+
   // Allow anonymous user to access tour on the user registration page.
   /** @var \Drupal\user\RoleInterface $role */
   $role = \Drupal\user\Entity\Role::load('anonymous');

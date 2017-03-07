@@ -84,9 +84,12 @@ hooks:
       rm -rf /tmp/$PLATFORM_PROJECT/phpstorage/twig/*
       cd web
       if [ ! -f /app/private/.platform.installed ]; then
-        # Install Thunder and enable demo module on first deploy.
-        /app/bin/drush site-install thunder --site-name="Thunder demo" -y
-        /app/bin/drush pm-enable mds_thunder_demo -y
+        # Import Thunder database and copy files on first deploy.
+        bunzip2 ../import/dbdump.sql.bz2 --stdout | /app/bin/drush sql-cli
+        cd sites/default/files
+        tar xvjf ../../../../import/files.tar.bz2
+        cd /app/web
+        /app/bin/drush cr
         touch /app/private/.platform.installed
       else
         rm -r config/*
