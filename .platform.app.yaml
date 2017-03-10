@@ -90,7 +90,8 @@ hooks:
         tar xvjf ../../../../import/files.tar.bz2
         cd /app/web
         /app/bin/drush cr
-        /usr/bin/curl --request POST  "http://crm.office.md-systems.ch/demo-pingback" --data-binary "type=thunder&id=$PLATFORM_PROJECT"
+        URL=`echo $PLATFORM_ROUTES | base64 --decode | json_pp | grep -o -e "http://master[^\"{}]*"`
+        /usr/bin/curl --request POST  "http://crm.office.md-systems.ch/demo-pingback" --data-binary "type=thunder&id=$PLATFORM_PROJECT&url=$URL"
         touch /app/private/.platform.installed
       else
         rm -r config/*
