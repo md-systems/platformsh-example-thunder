@@ -3,7 +3,7 @@
 # Each route describes how an incoming URL is going
 # to be processed by Platform.sh.
 
-"http://www.{default}/":
+"https://www.{default}/":
     type: upstream
     upstream: "app:http"
     cache:
@@ -11,6 +11,6 @@
       headers: []
       default_ttl: 60
 
-"http://{default}/":
+"https://{default}/":
     type: redirect
     to: "http://www.{default}/"
