@@ -30,7 +30,7 @@ class AzureBlock extends BlockBase {
       '#template' => '<div class="widget azure_widget">{{ sponsored_by }} <a title="Microsoft Azure" href="https://azure.microsoft.com">{{ azure }}</a>.
             </div>',
       '#context' => [
-        'sponsored_by' => $this->t('Infrastructure sponsored by the'),
+        'sponsored_by' => $this->t('Infrastructure sponsored by'),
         'azure' => $this->t('Microsoft Azure'),
       ],
     ];
