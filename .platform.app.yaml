@@ -59,8 +59,10 @@ web:
                 expires: 1w
               \.*$:
                 allow: true
-                expires: 4h
-
+                # Causes initial redirect to be cached in browser. Disabling
+                # until we have a better solution.
+                #expires: 4h
+                expires: -1
 
 # The size of the persistent disk of the application (in MB).
 disk: 2048
