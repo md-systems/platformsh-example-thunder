@@ -1,0 +1,19 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - mds_thunder_demo
+  theme:
+    - thunder_base
+id: infrabyazure
+theme: thunder_base
+region: footer_fifth
+weight: 0
+provider: null
+plugin: mds_thunder_demo_azure
+settings:
+  id: mds_thunder_demo_azure
+  label: 'Infra by Azure'
+  provider: mds_thunder_demo
+  label_display: '0'
+visibility: {  }

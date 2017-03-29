@@ -33,7 +33,8 @@
         "drupal-composer/drupal-scaffold": "^2.2",
         "cweagans/composer-patches": "~1.0",
         "drush/drush": "~8.0",
-        "drupal/console": "~1.0"
+        "drupal/console": "~1.0",
+        "drupal/sharemessage": "~1.0"
     },
     "require-dev": {
         "behat/mink": "~1.7",

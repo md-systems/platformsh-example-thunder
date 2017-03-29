@@ -197,21 +197,6 @@ the best we can also organize a <a href="md_bootstrap">bootstrap week for them</
       ],
     ];
 
-    $output['platform_sh'] = [
-      'heading' => [
-        '#type' => 'html_tag',
-        '#tag' => 'h2',
-        '#value' => $this->t('Hosted by Platform.sh'),
-      ],
-      'content' => [
-        '#type' => 'inline_template',
-        '#template' => '<p>This demo site is hosted by <a href="{{ platform }}">Platform.sh</a>, the next-generation cloud hosting platform.',
-        '#context' => [
-          'platform' => Url::fromUri('https://platform.sh'),
-        ],
-      ],
-    ];
-
     return $output;
   }
 }

@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "f75aee94c52251a1ae0137d36a904dad",
-    "content-hash": "b50512970bd5533c091de70daff8dd08",
+    "hash": "6f10f1ac7283d179e11e79cc0077df5b",
+    "content-hash": "8e5467612ba5965f38c0b05cc9965bd1",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -3636,18 +3636,68 @@
             }
         },
         {
-            "name": "drupal/simple_sitemap",
-            "version": "2.8.0",
+            "name": "drupal/sharemessage",
+            "version": "1.0.0-beta2",
             "source": {
                 "type": "git",
-                "url": "https://git.drupal.org/project/simple_sitemap",
-                "reference": "8.x-2.8"
+                "url": "https://git.drupal.org/project/sharemessage",
+                "reference": "8.x-1.0-beta2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/simple_sitemap-8.x-2.8.zip",
+                "url": "https://ftp.drupal.org/files/projects/sharemessage-8.x-1.0-beta2.zip",
                 "reference": null,
-                "shasum": "f88b904f8e71d849693309b9315f25e7c06a6d77"
+                "shasum": "8a65e9976d7d905c04f9990624ce0427c5c53dd8"
+            },
+            "require": {
+                "drupal/core": "~8.0"
+            },
+            "require-dev": {
+                "drupal/token": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.0-beta2",
+                    "datestamp": "1481758983"
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Berdir",
+                    "homepage": "https://www.drupal.org/user/214652"
+                },
+                {
+                    "name": "miro_dietiker",
+                    "homepage": "https://www.drupal.org/user/227761"
+                }
+            ],
+            "description": "Sharing module using AddThis widgets and entity based storage.",
+            "homepage": "https://www.drupal.org/project/sharemessage",
+            "support": {
+                "source": "http://cgit.drupalcode.org/sharemessage"
+            }
+        },
+        {
+            "name": "drupal/simple_sitemap",
+            "version": "2.9.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/simple_sitemap",
+                "reference": "8.x-2.9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/simple_sitemap-8.x-2.9.zip",
+                "reference": null,
+                "shasum": "73bc5b375a7563ee217688f752318fe044b1e9de"
             },
             "require": {
                 "drupal/core": "~8.0"
@@ -3658,8 +3708,8 @@
                     "dev-2.x": "2.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-2.8",
-                    "datestamp": "1482783482"
+                    "version": "8.x-2.9",
+                    "datestamp": "1490775483"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
