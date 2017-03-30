@@ -28,7 +28,7 @@ class InitialTourSubscriber implements EventSubscriberInterface {
         'user.register',
         [],
         ['query' => ['tour' => 1]]
-      )->toString(), 302, ['Cache-Control' => 'no-cache, private']));
+      )->toString(), 307, ['Cache-Control' => 'no-cache, private']));
     }
   }
 
