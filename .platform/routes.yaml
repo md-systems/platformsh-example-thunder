@@ -7,10 +7,7 @@
     type: upstream
     upstream: "app:http"
     cache:
-      # Causes initial redirect to be cached in browser. Disabling
-      # until we have a better solution.
-      #enabled: true
-      enabled: false
+      enabled: true
       headers: []
       default_ttl: 60
 
