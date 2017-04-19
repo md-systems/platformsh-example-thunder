@@ -2,6 +2,7 @@
 
 namespace Drupal\mds_thunder_demo\EventSubscriber;
 
+use Drupal\Core\PageCache\ResponsePolicy\KillSwitch;
 use Drupal\Core\Routing\RouteMatch;
 use Drupal\Core\Url;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -15,6 +16,23 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 class InitialTourSubscriber implements EventSubscriberInterface {
 
   /**
+   * Page cache kill switch service.
+   *
+   * @var \Drupal\Core\PageCache\ResponsePolicy\KillSwitch
+   */
+  protected $pageCacheKillswitch;
+
+  /**
+   * Constructs InitialTourSubscriber.
+   *
+   * @param \Drupal\Core\PageCache\ResponsePolicy\KillSwitch $killswitch
+   *   Page cache kill switch service.
+   */
+  public function __construct(KillSwitch $killswitch) {
+    $this->pageCacheKillswitch = $killswitch;
+  }
+
+  /**
    * Forces tour if needed.
    *
    * @param \Symfony\Component\HttpKernel\Event\FilterResponseEvent $event
@@ -24,6 +42,7 @@ class InitialTourSubscriber implements EventSubscriberInterface {
     $request = $event->getRequest();
     $route_match = RouteMatch::createFromRequest($request);
     if ($route_match->getRouteName() == 'user.register' && !$request->query->has('tour') && _mds_thunder_demo_is_new_site()) {
+      $this->pageCacheKillswitch->trigger();
       $event->setResponse(new RedirectResponse(Url::fromRoute(
         'user.register',
         [],

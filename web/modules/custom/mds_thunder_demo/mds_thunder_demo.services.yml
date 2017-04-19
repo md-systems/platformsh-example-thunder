@@ -1,5 +1,6 @@
 services:
   initial_tour_subscriber:
     class: Drupal\mds_thunder_demo\EventSubscriber\InitialTourSubscriber
+    arguments: ['@page_cache_kill_switch']
     tags:
       - { name: event_subscriber }
