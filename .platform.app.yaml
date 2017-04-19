@@ -33,36 +33,53 @@ relationships:
 web:
     # Specific parameters for different URL prefixes.
     locations:
-        "/":
-            # The folder to serve static assets for this location from.
-            # (Relative to the application root.)
-            root: "web"
+        '/':
+            # The folder from which to serve static assets, for this location.
+            #
+            # This is a filesystem path, relative to the application root.
+            root: 'web'
 
             # How long to allow static assets from this location to be cached.
-            # (Can be a time or -1 for no caching. Times can be suffixed with
-            # "ms" (milliseconds), "s" (seconds), "m" (minutes), "h" (hours),
-            # "d" (days), "w" (weeks), "M" (months, 30d) or "y" (years, 365d).)
-            expires: 300
+            #
+            # Can be a time in seconds, or -1 for no caching. Times can be
+            # suffixed with "s" (seconds), "m" (minutes), "h" (hours), "d"
+            # (days), "w" (weeks), "M" (months, as 30 days) or "y" (years, as
+            # 365 days).
+            expires: 5m
 
             # Whether to forward disallowed and missing resources from this
             # location to the application.
-            # (Can be true, false or a URI path string.)
-            passthru: "/index.php"
+            #
+            # Can be true, false or a URI path string.
+            passthru: '/index.php'
 
-            # Expiration rules
+            # Deny access to static files in this location.
+            allow: false
+
+            # Rules for specific URI patterns.
             rules:
-              \.css:
-                allow: true
-                expires: 1w
-              \.js:
-                allow: true
-                expires: 1w
-              \.*$:
-                allow: true
-                # Causes initial redirect to be cached in browser. Disabling
-                # until we have a better solution.
-                #expires: 4h
-                expires: -1
+                # Allow access to common static files.
+                '\.(jpe?g|png|gif|svgz?|css|js|map|ico|bmp|eot|woff2?|otf|ttf)$':
+                    allow: true
+                '^/robots\.txt$':
+                    allow: true
+                '^/sitemap\.xml$':
+                    allow: true
+
+        '/sites/default/files':
+            # Allow access to all files in the public files directory.
+            allow: true
+            expires: 5m
+            passthru: '/index.php'
+            root: 'web/sites/default/files'
+
+            # Do not execute PHP scripts.
+            scripts: false
+
+            rules:
+                # Provide a longer TTL (2 weeks) for aggregated CSS and JS files.
+                '^/sites/default/files/(css|js)':
+                    expires: 2w
 
 # The size of the persistent disk of the application (in MB).
 disk: 2048
