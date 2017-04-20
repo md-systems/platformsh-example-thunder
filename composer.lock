@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "514e41a4fe111dc0a305305a6dcea8ff",
-    "content-hash": "18d0aac04d8ccd0e707885b75c5b0cd2",
+    "hash": "b2784f4f1e076665332e03b38d3e54b8",
+    "content-hash": "4674f319f52290e0e4d2bf140e91a570",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -174,16 +174,16 @@
         },
         {
             "name": "burdamagazinorg/thunder",
-            "version": "8.1.3",
+            "version": "8.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/BurdaMagazinOrg/thunder-distribution.git",
-                "reference": "106ac37d47600e56f18c2253ef1da45610637ed2"
+                "reference": "127f08fd9c454141efe991f8be76dd7c510be16e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/BurdaMagazinOrg/thunder-distribution/zipball/106ac37d47600e56f18c2253ef1da45610637ed2",
-                "reference": "106ac37d47600e56f18c2253ef1da45610637ed2",
+                "url": "https://api.github.com/repos/BurdaMagazinOrg/thunder-distribution/zipball/127f08fd9c454141efe991f8be76dd7c510be16e",
+                "reference": "127f08fd9c454141efe991f8be76dd7c510be16e",
                 "shasum": ""
             },
             "require": {
@@ -274,7 +274,8 @@
                     },
                     "drupal/blazy": {
                         "Drupal 8.3 error": "https://www.drupal.org/files/issues/drupal_8_3_error-2849191-2.patch",
-                        "Images of gallery will not be loaded": "https://www.drupal.org/files/issues/blazy-gallery-not-loaded-2846560.patch"
+                        "Images of gallery will not be loaded": "https://www.drupal.org/files/issues/blazy-gallery-not-loaded-2846560.patch",
+                        "Exception if configured image style does not exists anymore": "https://www.drupal.org/files/issues/exception_if_configured-2871085-2.patch"
                     }
                 }
             },
@@ -301,7 +302,7 @@
                 }
             ],
             "description": "The thunder distribution",
-            "time": "2017-04-10 15:54:29"
+            "time": "2017-04-20 07:58:41"
         },
         {
             "name": "composer/installers",
@@ -1027,16 +1028,16 @@
         },
         {
             "name": "doctrine/common",
-            "version": "v2.5.3",
+            "version": "v2.7.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/common.git",
-                "reference": "10f1f19651343f87573129ca970aef1a47a6f29e"
+                "reference": "930297026c8009a567ac051fd545bf6124150347"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/common/zipball/10f1f19651343f87573129ca970aef1a47a6f29e",
-                "reference": "10f1f19651343f87573129ca970aef1a47a6f29e",
+                "url": "https://api.github.com/repos/doctrine/common/zipball/930297026c8009a567ac051fd545bf6124150347",
+                "reference": "930297026c8009a567ac051fd545bf6124150347",
                 "shasum": ""
             },
             "require": {
@@ -1045,20 +1046,20 @@
                 "doctrine/collections": "1.*",
                 "doctrine/inflector": "1.*",
                 "doctrine/lexer": "1.*",
-                "php": ">=5.3.2"
+                "php": "~5.6|~7.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "~3.7"
+                "phpunit/phpunit": "^5.4.6"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.5.x-dev"
+                    "dev-master": "2.7.x-dev"
                 }
             },
             "autoload": {
-                "psr-0": {
-                    "Doctrine\\Common\\": "lib/"
+                "psr-4": {
+                    "Doctrine\\Common\\": "lib/Doctrine/Common"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -1096,7 +1097,7 @@
                 "persistence",
                 "spl"
             ],
-            "time": "2015-12-25 13:10:16"
+            "time": "2017-01-13 14:02:13"
         },
         {
             "name": "doctrine/inflector",
@@ -1454,7 +1455,8 @@
                 },
                 "patches_applied": {
                     "Drupal 8.3 error": "https://www.drupal.org/files/issues/drupal_8_3_error-2849191-2.patch",
-                    "Images of gallery will not be loaded": "https://www.drupal.org/files/issues/blazy-gallery-not-loaded-2846560.patch"
+                    "Images of gallery will not be loaded": "https://www.drupal.org/files/issues/blazy-gallery-not-loaded-2846560.patch",
+                    "Exception if configured image style does not exists anymore": "https://www.drupal.org/files/issues/exception_if_configured-2871085-2.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -1524,6 +1526,10 @@
                 {
                     "name": "daniel.bosen",
                     "homepage": "https://www.drupal.org/user/404865"
+                },
+                {
+                    "name": "thunderbot",
+                    "homepage": "https://www.drupal.org/user/3511180"
                 }
             ],
             "description": "Write breakpoint information into javascript settings.",
@@ -1835,28 +1841,28 @@
         },
         {
             "name": "drupal/core",
-            "version": "8.2.8",
+            "version": "8.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drupal-composer/drupal-core.git",
-                "reference": "c63ef7a000bdfe2286cf2eeec6efdf4298dfc6a8"
+                "reference": "53326f9503e5e9e406fab22e4fbae6ddb706f7be"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/drupal-composer/drupal-core/zipball/c63ef7a000bdfe2286cf2eeec6efdf4298dfc6a8",
-                "reference": "c63ef7a000bdfe2286cf2eeec6efdf4298dfc6a8",
+                "url": "https://api.github.com/repos/drupal-composer/drupal-core/zipball/53326f9503e5e9e406fab22e4fbae6ddb706f7be",
+                "reference": "53326f9503e5e9e406fab22e4fbae6ddb706f7be",
                 "shasum": ""
             },
             "require": {
                 "asm89/stack-cors": "~1.0",
                 "composer/semver": "~1.0",
                 "doctrine/annotations": "1.2.*",
-                "doctrine/common": "2.5.*",
+                "doctrine/common": "^2.5",
                 "easyrdf/easyrdf": "0.9.*",
                 "egulias/email-validator": "1.2.*",
                 "guzzlehttp/guzzle": "^6.2.1",
                 "masterminds/html5": "~2.1",
-                "paragonie/random_compat": "^1|^2",
+                "paragonie/random_compat": "^1.0|^2.0",
                 "php": ">=5.5.9",
                 "stack/builder": "1.0.*",
                 "symfony-cmf/routing": "~1.4",
@@ -1868,7 +1874,7 @@
                 "symfony/http-kernel": "~2.8",
                 "symfony/polyfill-iconv": "~1.0",
                 "symfony/process": "~2.8",
-                "symfony/psr-http-message-bridge": "v0.2",
+                "symfony/psr-http-message-bridge": "^1.0",
                 "symfony/routing": "~2.8",
                 "symfony/serializer": "~2.8",
                 "symfony/translation": "~2.8",
@@ -1929,6 +1935,7 @@
                 "drupal/editor": "self.version",
                 "drupal/entity_reference": "self.version",
                 "drupal/field": "self.version",
+                "drupal/field_layout": "self.version",
                 "drupal/field_ui": "self.version",
                 "drupal/file": "self.version",
                 "drupal/filter": "self.version",
@@ -1939,6 +1946,7 @@
                 "drupal/image": "self.version",
                 "drupal/inline_form_errors": "self.version",
                 "drupal/language": "self.version",
+                "drupal/layout_discovery": "self.version",
                 "drupal/link": "self.version",
                 "drupal/locale": "self.version",
                 "drupal/menu_link_content": "self.version",
@@ -1975,21 +1983,23 @@
                 "drupal/update": "self.version",
                 "drupal/user": "self.version",
                 "drupal/views": "self.version",
-                "drupal/views_ui": "self.version"
+                "drupal/views_ui": "self.version",
+                "drupal/workflows": "self.version"
             },
             "require-dev": {
-                "behat/mink": "~1.7",
+                "behat/mink": "1.7.x-dev",
                 "behat/mink-goutte-driver": "~1.2",
+                "drupal/coder": "8.2.12",
                 "jcalderonzumba/gastonjs": "~1.0.2",
                 "jcalderonzumba/mink-phantomjs-driver": "~0.3.1",
                 "mikey179/vfsstream": "~1.2",
                 "phpunit/phpunit": ">=4.8.28 <5",
+                "symfony/browser-kit": ">=2.8.13 <3.0",
                 "symfony/css-selector": "~2.8"
             },
             "type": "drupal-core",
             "extra": {
                 "patches_applied": {
-                    "Redirect to install.php on empty DB": "https://www.drupal.org/files/issues/728702-163.patch",
                     "Make links in tour tips blue in Seven.": "https://www.drupal.org/files/issues/2851270_2.patch",
                     "Make sure tour tips are displayed above admin toolbar.": "https://www.drupal.org/files/issues/tour_tip_display_under-2851086-2.patch",
                     "Make it possible to specify a destination after the installation for distributions": "https://www.drupal.org/files/issues/make_it_possible_to-2776605-2.patch"
@@ -2016,7 +2026,7 @@
                 "GPL-2.0+"
             ],
             "description": "Drupal is an open source content management platform powering millions of websites and applications.",
-            "time": "2017-04-19 16:45:52"
+            "time": "2017-04-19 16:07:22"
         },
         {
             "name": "drupal/crop",
@@ -2403,7 +2413,7 @@
                 },
                 "drupal": {
                     "version": "8.x-1.0-rc2",
-                    "datestamp": "1487581984"
+                    "datestamp": "1487795881"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -2683,9 +2693,9 @@
             "require": {
                 "drupal/core": "~8.0"
             },
-            "suggest": {
-                "drupal/php": "Required by drupal/google_analytics",
-                "drupal/token": "Required by drupal/google_analytics"
+            "require-dev": {
+                "drupal/php": "*",
+                "drupal/token": "*"
             },
             "type": "drupal-module",
             "extra": {
@@ -2735,8 +2745,8 @@
             "require": {
                 "drupal/core": "~8.0"
             },
-            "suggest": {
-                "drupal/entity_reference_revisions": "Required by drupal/inline_entity_form"
+            "require-dev": {
+                "drupal/entity_reference_revisions": "*"
             },
             "type": "drupal-module",
             "extra": {
@@ -2979,6 +2989,10 @@
                     "homepage": "https://www.drupal.org/user/214652"
                 },
                 {
+                    "name": "Dave Reid",
+                    "homepage": "https://www.drupal.org/user/53892"
+                },
+                {
                     "name": "Drupal Media Team",
                     "homepage": "https://www.drupal.org/user/3260690"
                 },
@@ -3047,8 +3061,8 @@
                 "drupal/core": "~8.1",
                 "drupal/media_entity": "~1.0 || ~8.1.0"
             },
-            "suggest": {
-                "drupal/entity_browser": "Required by drupal/media_entity_image"
+            "require-dev": {
+                "drupal/entity_browser": "*"
             },
             "type": "drupal-module",
             "extra": {
@@ -3324,7 +3338,7 @@
                 },
                 "drupal": {
                     "version": "8.x-1.0",
-                    "datestamp": "1485901983"
+                    "datestamp": "1485902197"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -4047,7 +4061,7 @@
                 },
                 "drupal": {
                     "version": "8.x-1.x-dev",
-                    "datestamp": "1430514481"
+                    "datestamp": "1467836568"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -6408,16 +6422,16 @@
         },
         {
             "name": "symfony/psr-http-message-bridge",
-            "version": "v0.2",
+            "version": "v1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/psr-http-message-bridge.git",
-                "reference": "dc7e308e1dc2898a46776e2221a643cb08315453"
+                "reference": "66085f246d3893cbdbcec5f5ad15ac60546cf0de"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/psr-http-message-bridge/zipball/dc7e308e1dc2898a46776e2221a643cb08315453",
-                "reference": "dc7e308e1dc2898a46776e2221a643cb08315453",
+                "url": "https://api.github.com/repos/symfony/psr-http-message-bridge/zipball/66085f246d3893cbdbcec5f5ad15ac60546cf0de",
+                "reference": "66085f246d3893cbdbcec5f5ad15ac60546cf0de",
                 "shasum": ""
             },
             "require": {
@@ -6429,9 +6443,15 @@
                 "symfony/phpunit-bridge": "~2.7|~3.0"
             },
             "suggest": {
+                "psr/http-message-implementation": "To use the HttpFoundation factory",
                 "zendframework/zend-diactoros": "To use the Zend Diactoros factory"
             },
             "type": "symfony-bridge",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
             "autoload": {
                 "psr-4": {
                     "Symfony\\Bridge\\PsrHttpMessage\\": ""
@@ -6458,7 +6478,7 @@
                 "http-message",
                 "psr-7"
             ],
-            "time": "2015-05-29 17:57:12"
+            "time": "2016-09-14 18:37:20"
         },
         {
             "name": "symfony/routing",

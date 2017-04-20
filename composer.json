@@ -34,8 +34,7 @@
         "cweagans/composer-patches": "~1.0",
         "drush/drush": "~8.0",
         "drupal/console": "~1.0",
-        "drupal/sharemessage": "~1.0",
-        "drupal/core" : "8.2.8"
+        "drupal/sharemessage": "~1.0"
     },
     "require-dev": {
         "behat/mink": "~1.7",
@@ -72,7 +71,6 @@
     "extra": {
         "patches": {
             "drupal/core" : {
-                "Redirect to install.php on empty DB": "https://www.drupal.org/files/issues/728702-163.patch",
                 "Make links in tour tips blue in Seven." : "https://www.drupal.org/files/issues/2851270_2.patch",
                 "Make sure tour tips are displayed above admin toolbar." : "https://www.drupal.org/files/issues/tour_tip_display_under-2851086-2.patch"
             }
