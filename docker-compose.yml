@@ -32,6 +32,8 @@ drush:
     - redis
   volumes_from:
     - php
+  volumes:
+      - ./drushrc_mounted.php:/etc/drush/drushrc.php
 
 redis:
   image: redis:3-alpine
