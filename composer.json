@@ -25,25 +25,21 @@
         {
             "type": "composer",
             "url": "https://packages.drupal.org/8"
+        },
+        {
+            "type": "composer",
+            "url": "https://asset-packagist.org"
         }
     ],
     "require": {
-        "burdamagazinorg/thunder": "~8.0",
+        "burdamagazinorg/thunder": "~8.2",
         "composer/installers": "^1.2",
+        "oomphinc/composer-installers-extender": "^1.1",
         "drupal-composer/drupal-scaffold": "^2.2",
         "cweagans/composer-patches": "~1.0",
-        "drush/drush": "~8.0",
+        "drush/drush": "^8.1.10",
         "drupal/console": "~1.0",
         "drupal/sharemessage": "~1.0"
-    },
-    "require-dev": {
-        "behat/mink": "~1.7",
-        "behat/mink-goutte-driver": "~1.2",
-        "jcalderonzumba/gastonjs": "~1.0.2",
-        "jcalderonzumba/mink-phantomjs-driver": "~0.3.1",
-        "mikey179/vfsStream": "~1.2",
-        "phpunit/phpunit": "~4.8",
-        "symfony/css-selector": "~2.8"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
@@ -59,13 +55,11 @@
         "drupal-scaffold": "Thunder\\DrupalScaffold\\Plugin::scaffold",
         "post-install-cmd": [
             "Thunder\\composer\\ScriptHandler::buildScaffold",
-            "Thunder\\composer\\ScriptHandler::createRequiredFiles",
-            "Thunder\\composer\\ScriptHandler::deployLibraries"
+            "Thunder\\composer\\ScriptHandler::createRequiredFiles"
         ],
         "post-update-cmd": [
             "Thunder\\composer\\ScriptHandler::buildScaffold",
-            "Thunder\\composer\\ScriptHandler::createRequiredFiles",
-            "Thunder\\composer\\ScriptHandler::deployLibraries"
+            "Thunder\\composer\\ScriptHandler::createRequiredFiles"
         ]
     },
     "extra": {
@@ -75,9 +69,13 @@
                 "Make sure tour tips are displayed above admin toolbar." : "https://www.drupal.org/files/issues/tour_tip_display_under-2851086-2.patch"
             }
         },
+        "installer-types": ["bower-asset"],
         "installer-paths": {
             "web/core": ["type:drupal-core"],
-            "web/libraries/{$name}": ["type:drupal-library"],
+            "web/libraries/{$name}": [
+                "type:drupal-library",
+                "type:bower-asset"
+            ],
             "web/modules/contrib/{$name}": ["type:drupal-module"],
             "web/profiles/contrib/{$name}": ["type:drupal-profile"],
             "web/themes/contrib/{$name}": ["type:drupal-theme"],

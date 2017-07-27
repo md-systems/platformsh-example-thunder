@@ -15,6 +15,7 @@ web/sites/simpletest
 
 bin
 docroot/core
+docroot/libraries
 docroot/modules/contrib
 docroot/themes/contrib
 docroot/profiles/contrib
