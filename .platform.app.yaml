@@ -17,11 +17,6 @@ runtime:
 build:
     flavor: composer
 
-# The build-time dependencies of the app.
-dependencies:
-    nodejs:
-        bower: "^1.7.9"
-
 # The relationships of the application with services or other applications.
 # The left-hand side is the name of the relationship as it will be exposed
 # to the application in the PLATFORM_RELATIONSHIPS variable. The right-hand
@@ -94,9 +89,11 @@ mounts:
 
 # The hooks executed at various points in the lifecycle of the application.
 hooks:
+    # Thunder switcher to using composer driven fetching of frontend libraries
+    # with 2.x. Initial call of `composer install` misses to download some of
+    # them so we re-run it here.
     build: |
-      bower install -s
-      mv web/libraries/slick.js web/libraries/slick
+      composer --no-ansi --no-interaction install --no-progress --prefer-dist --optimize-autoloader 2> /dev/null 1>/dev/null
     # We run deploy hook after your application has been deployed and started.
     deploy: |
       mkdir -p /tmp/$PLATFORM_PROJECT/phpstorage/twig
