@@ -17,7 +17,7 @@ web:
     - php
 
 php:
-  image: drupaldocker/php-dev:7.0-alpine-fpm
+  image: drupaldocker/php-dev:7.1-alpine-fpm
   links:
     - maria
     - redis
