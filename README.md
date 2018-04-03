@@ -136,3 +136,17 @@ To prevent downloading a module, that Thunder provides but that you do not need,
 ```
 
 This example prevents any version of the feature module to be downloaded.
+
+
+## Demo
+
+```
+
+# Make sure that the customizations of mds_thunder_demo_user_presave() are reverted when a user was created. Delete the user,
+# allow registration and tour access, reset frontpage.
+
+drush sql-dump --structure-tables-list=cache_data,cache_discovery,cache_config,router,cache_menu,cache_default,cache_container,cache_render,cache_bootstrap,cache_entity,cache_page,cache_dynamic_page_cache --result-file=../import/dbdump.sql
+cd ../import
+rm dbdump.sql.bz2
+bzip2 dbdump.sql
+
