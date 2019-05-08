@@ -27,3 +27,9 @@ web/sites/*/services*.yml
 
 # Ignore SimpleTest multi-site environment.
 web/sites/simpletest
+
+# Ignore Acquia Dev Desktop configs.
+web/sites/*.dd
+
+# Ignore .env files as they are personal
+/.env

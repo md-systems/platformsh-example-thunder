@@ -17,12 +17,12 @@
             "email": "mladen.todorovic@burda.com"
         },
         {
-            "name": "Timo Welde",
-            "email": "welde@galaniproject.de"
+            "name": "Alex Pott",
+            "email": "alex.a.pott@gmail.com"
         },
         {
             "name": "Volker Killesreiter",
-            "email": "killesreiter@burda.com"
+            "email": "volker.killesreiter@burda.com"
         }
     ],
     "repositories": [
@@ -36,27 +36,31 @@
         }
     ],
     "require": {
+        "php": ">=5.6",
         "burdamagazinorg/thunder": "~8.2",
-        "cweagans/composer-patches": "^1.6",
-        "drupal-composer/drupal-scaffold": "^2.2",
+        "cweagans/composer-patches": "^1.6.5",
+        "drupal-composer/drupal-scaffold": "^2.5",
         "drupal/console": "^1.2",
         "composer/installers": "^1.2",
-        "drush/drush": "~8.0|^9.0.0-beta8",
+        "drush/drush": "~8.0|^9.0.0",
+        "vlucas/phpdotenv": "^2.4",
         "oomphinc/composer-installers-extender": "^1.1",
         "webflo/drupal-finder": "^1.0.0",
         "webmozart/path-util": "^2.3",
         "cweagans/composer-patches": "~1.0",
-        "drupal/sharemessage": "~1.0"
+        "drupal/sharemessage": "~1.0",
+        "zaporylie/composer-drupal-optimizations": "^1.0"
     },
     "require-dev": {
-        "webflo/drupal-core-require-dev": "^8.4"
+        "webflo/drupal-core-require-dev": "^8.6"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
     "autoload": {
-        "psr-4": {
-            "DrupalProject\\composer\\": "scripts/composer/"
-        }
+        "classmap": [
+            "scripts/composer/ScriptHandler.php"
+        ],
+        "files": ["load.environment.php"]
     },
     "scripts": {
         "drupal-scaffold": "DrupalComposer\\DrupalScaffold\\Plugin::scaffold",
@@ -77,24 +81,33 @@
         "patches": {
             "drupal/core" : {
                 "Make links in tour tips blue in Seven." : "https://www.drupal.org/files/issues/2851270_2.patch",
-                "Make sure tour tips are displayed above admin toolbar." : "https://www.drupal.org/files/issues/tour_tip_display_under-2851086-2.patch"
+                "Make sure tour tips are displayed above admin toolbar." : "https://www.drupal.org/files/issues/2019-05-08/tour_tip_display_under-2851086-19.patch"
             }
         },
-        "installer-types": ["bower-asset"],
+        "composer-exit-on-patch-failure": true,
+        "installer-types": ["bower-asset", "npm-asset"],
         "installer-paths": {
             "web/core": ["type:drupal-core"],
             "web/libraries/{$name}": [
                 "type:drupal-library",
-                "type:bower-asset"
+                "type:bower-asset",
+                "type:npm-asset"
             ],
             "web/modules/contrib/{$name}": ["type:drupal-module"],
             "web/profiles/contrib/{$name}": ["type:drupal-profile"],
             "web/themes/contrib/{$name}": ["type:drupal-theme"],
             "drush/contrib/{$name}": ["type:drupal-drush"]
         },
-        "enable-patching": true
+        "enable-patching": true,
+        "drupal-scaffold": {
+            "initial": {
+                ".editorconfig": "../.editorconfig",
+                ".gitattributes": "../.gitattributes"
+            }
+        }
     },
     "config": {
-        "bin-dir": "bin/"
+        "bin-dir": "bin/",
+        "sort-packages": true
     }
 }
